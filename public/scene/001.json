@@ -1,0 +1,50 @@
+
+{
+  "length":10,
+  "width":10,
+  "world_object":[
+    {"location":[0,0,1],"object_id": "100001"},
+    {"location":[1,0,1],"object_id": "100001"},
+    {"location":[2,0,1],"object_id": "100001"},
+    {"location":[3,0,1],"object_id": "100001"},
+    {"location":[4,0,1],"object_id": "100001"},
+    {"location":[5,0,1],"object_id": "100001"},
+    {"location":[6,0,1],"object_id": "100001"},
+    {"location":[7,0,1],"object_id": "100001"},
+    {"location":[8,0,1],"object_id": "100001"},
+    {"location":[9,0,1],"object_id": "100001"},
+
+    {"location":[0,1,1],"object_id": "100001"},
+    {"location":[0,2,1],"object_id": "100001"},
+    {"location":[0,3,1],"object_id": "100001"},
+    {"location":[0,4,1],"object_id": "100001"},
+    {"location":[0,5,1],"object_id": "100001"},
+    {"location":[0,6,1],"object_id": "100001"},
+    {"location":[0,7,1],"object_id": "100001"},
+    {"location":[0,8,1],"object_id": "100001"},
+    {"location":[0,9,1],"object_id": "100001"},
+
+    {"location":[9,1,1],"object_id": "100001"},
+    {"location":[9,2,1],"object_id": "100001"},
+    {"location":[9,3,1],"object_id": "100001"},
+    {"location":[9,4,1],"object_id": "100001"},
+    {"location":[9,5,1],"object_id": "100001"},
+    {"location":[9,6,1],"object_id": "100001"},
+    {"location":[9,7,1],"object_id": "100001"},
+    {"location":[9,8,1],"object_id": "100001"},
+    {"location":[9,9,1],"object_id": "100001"},
+
+    {"location":[0,9,1],"object_id": "100001"},
+    {"location":[1,9,1],"object_id": "100001"},
+    {"location":[2,9,1],"object_id": "100001"},
+    {"location":[3,9,1],"object_id": "100001"},
+    {"location":[4,9,1],"object_id": "100001"},
+    {"location":[5,9,1],"object_id": "100001"},
+    {"location":[6,9,1],"object_id": "100001"},
+    {"location":[7,9,1],"object_id": "100001"},
+    {"location":[8,9,1],"object_id": "100001"},
+    {"location":[9,9,1],"object_id": "100001"}
+
+
+  ]
+}

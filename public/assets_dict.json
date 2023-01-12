@@ -1,0 +1,16 @@
+{
+  "@comment":"map object id to its asset file path",
+  "100001":{
+    "name":"ground_tile",
+    "path":"ground_tile",
+    "width":16,
+    "height":16
+  },
+  "300001":{
+    "name":"computer",
+    "path":"computer",
+    "width":16,
+    "height":21
+  }
+
+}
