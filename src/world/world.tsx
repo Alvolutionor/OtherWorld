@@ -7,6 +7,7 @@ import {EventAcrossComponents} from "./interface/WorldInterface"
 const InitWorld = ({parentName}:{parentName:string})=>{
 	const [GameEvent, setGameEvent] = useState<EventAcrossComponents>({})
 	const [reactEvent,setReactEvent] = useState<EventAcrossComponents>({})
+	
 	useEffect(()=>{
 		const config = {
 			type: Phaser.AUTO,
