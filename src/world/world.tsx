@@ -1,12 +1,18 @@
 import Phaser from "phaser";
-import { useState, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import InitScene from "./scene/scene";
 import WorldReact from "./react/WorldReact";
 import { EventAcrossComponents } from "./interface/WorldInterface";
+import Client_socket from "@/socket/Client_socket";
 
-const InitWorld = ({ parentName }: { parentName: string }) => {
-  const [GameEvent, setGameEvent] = useState<EventAcrossComponents>({});
-  const [reactEvent, setReactEvent] = useState<EventAcrossComponents>({});
+const InitWorld = ({
+  parentName,
+  client_socket,
+}: {
+  parentName: string;
+  client_socket: Client_socket;
+}) => {
+  const GameEvent = useRef<EventAcrossComponents | null>(null);
 
   useEffect(() => {
     const config = {
@@ -14,7 +20,7 @@ const InitWorld = ({ parentName }: { parentName: string }) => {
       parent: parentName,
       transparent: true,
       scale: {
-        mode: Phaser.Scale.RESIZE,
+        mode: Phaser.Scale.FIT,
         width: "100%",
         height: "100%",
       },
@@ -24,7 +30,7 @@ const InitWorld = ({ parentName }: { parentName: string }) => {
           gravity: { y: 200 },
         },
       },
-      scene: [new InitScene({ key: "zero" }, "001", setGameEvent, reactEvent)],
+      scene: [new InitScene({ key: "zero" }, "001", GameEvent)],
     };
     const game = new Phaser.Game(config);
     return () => {
@@ -32,10 +38,17 @@ const InitWorld = ({ parentName }: { parentName: string }) => {
     };
   }, []);
 
+  const [, setForceUpdate] = useState(Date.now());
+  useEffect(() => {
+    setTimeout(() => {
+      setForceUpdate((a) => a + 1);
+    }, 100);
+  });
+
   return (
     <div>
-      <div id={parentName} style={{ zIndex: 100 }}></div>
-      <WorldReact GameEvent={GameEvent} setReactEvent={setReactEvent} />
+      <div id={parentName} style={{ zIndex: 100, padding: 0, border: 0, margin: 0 }}></div>
+      <WorldReact GameEvent={GameEvent} client_socket={client_socket} />
     </div>
   );
 };

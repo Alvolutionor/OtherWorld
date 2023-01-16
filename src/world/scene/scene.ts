@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import fs from "node:fs";
 import $ from "jquery";
 import { EventAcrossComponents } from "@/world/interface/WorldInterface";
-
+import { Ref } from "react";
 interface world_map {
   length: number;
   width: number;
@@ -22,8 +22,7 @@ type objectTuple = [string, Phaser.GameObjects.TileSprite | Phaser.GameObjects.I
 export default class InitScene extends Phaser.Scene {
   // scene_settings: Phaser.Scenes.ScenePlugin;
   map_file: string;
-  setGameEvent: Function;
-  reactEvent: EventAcrossComponents;
+  GameEvent?: Ref<EventAcrossComponents | null>;
   map_height?: number;
   map_width?: number;
   map_json?: world_map;
@@ -31,13 +30,11 @@ export default class InitScene extends Phaser.Scene {
   constructor(
     config: Phaser.Types.Scenes.SettingsConfig,
     id: string,
-    setGameEvent: Function,
-    reactEvent: EventAcrossComponents
+    GameEvent: Ref<EventAcrossComponents | null>
   ) {
     super(config);
     this.map_file = "tst/" + id + ".json";
-    this.setGameEvent = setGameEvent;
-    this.reactEvent = reactEvent;
+    this.GameEvent = GameEvent;
     this.objects = [];
   }
   // load the scene with id
@@ -81,14 +78,15 @@ export default class InitScene extends Phaser.Scene {
     computer.on("pointerdown", (e: any) => {
       background.setAlpha(0.5);
       computer.setAlpha(0.5);
-      this.setGameEvent({
-        EventName: "clickOnComputer",
-      });
-      console.log(e);
+      (this.GameEvent as any).current = {
+        EventName: "WorldMenu",
+      };
+      // console.log(e);
     });
   }
   update() {
-    if (this.reactEvent.EventName == "") {
+    // console.log(this.GameEvent);
+    if ((this.GameEvent as any)?.current?.EventName == "gameInterface") {
       for (let object of this.objects as objectTuple[]) {
         object[1].setAlpha(1);
       }
