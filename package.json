@@ -6,8 +6,19 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc && vite build",
+    "lint": "next lint --fix",
     "preview": "vite preview",
-    "prettier": "prettier -c .prettierrc \"src/{pages,store,components}/**/*.{js,jsx,ts,tsx}\" --write"
+    "prettier": "prettier -c .prettierrc \"src/**/**/*.{js,jsx,ts,tsx}\" --write",
+    "pre-commit": "npm run prettier && npm run lint && npx --no-install lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,json,md}": [
+      "git add ."
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add ."
+    ]
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.7",
@@ -16,7 +27,6 @@
     "@mui/material": "^5.11.4",
     "@mui/styled-engine-sc": "^5.11.0",
     "caller": "^1.1.0",
-    "eslint": "^8.31.0",
     "framer-motion": "^8.4.1",
     "husky": "^8.0.3",
     "jquery": "^3.6.3",
@@ -25,11 +35,13 @@
     "nipplejs": "^0.10.0",
     "phaser": "^3.55.2",
     "phaser3": "^0.4.34",
+    "pre-commit": "^1.2.2",
     "prettier": "^2.8.2",
     "react": "^18.2.0",
     "react-devtools-core": "^4.27.1",
     "react-dom": "^18.2.0",
     "react-joystick-component": "^6.0.0",
+    "redux": "^4.2.0",
     "socket.io-client": "^4.5.4",
     "styled-components": "^5.3.6",
     "type-fest": "^3.5.1"
