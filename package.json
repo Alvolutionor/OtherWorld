@@ -26,6 +26,7 @@
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.4",
     "@mui/styled-engine-sc": "^5.11.0",
+    "@types/history": "^5.0.0",
     "caller": "^1.1.0",
     "framer-motion": "^8.4.1",
     "husky": "^8.0.3",
@@ -41,10 +42,12 @@
     "react-devtools-core": "^4.27.1",
     "react-dom": "^18.2.0",
     "react-joystick-component": "^6.0.0",
+    "react-router-dom": "^6.7.0",
     "redux": "^4.2.0",
     "socket.io-client": "^4.5.4",
     "styled-components": "^5.3.6",
-    "type-fest": "^3.5.1"
+    "type-fest": "^3.5.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/caller": "^1.0.0",
@@ -52,6 +55,7 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@types/styled-components": "^5.1.26",
+    "@types/uuid": "^9.0.0",
     "@vitejs/plugin-react": "^3.0.0",
     "caller-id": "^0.1.0",
     "typescript": "^4.9.3",

@@ -3,8 +3,7 @@ import { IconButton, Button } from "@chakra-ui/react";
 import { EventAcrossComponents } from "@/world/interface/WorldInterface";
 import { Ref, useState } from "react";
 import { fontFamily, fontSize } from "@mui/system";
-import Client_socket from "@/socket/Client_socket";
-
+import Client_socket from "@/util/socket/Client_socket";
 const ChatRoomSelectRoomContent = ({
   GameEvent,
   client_socket,

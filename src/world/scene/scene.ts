@@ -1,6 +1,4 @@
 import Phaser from "phaser";
-import fs from "node:fs";
-import $ from "jquery";
 import { EventAcrossComponents } from "@/world/interface/WorldInterface";
 import { Ref } from "react";
 interface world_map {
