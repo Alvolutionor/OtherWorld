@@ -5,7 +5,11 @@ import ChatRoomSelectRoom from "../pages/ChatRoomSelectRoom";
 import ChatingPage from "../pages/ChatingPage";
 
 import RemoteControll from "../pages/RemoteControll";
-import Webrtc from "../pages/Webrtc";
+
+import WebRTCLogIn from "../pages/WebRTCLogIn";
+import WebRTCSelectRoom from "../pages/WebRTCSelectRoom";
+import WebRTC from "../pages/WebRTC";
+
 import Client_socket from "@/util/socket/Client_socket";
 import { EventAcrossComponents } from "../interface/WorldInterface";
 import { Ref, useEffect } from "react";
@@ -39,8 +43,14 @@ const WorldReact = ({
   if ((GameEvent as any)?.current?.EventName == "RemoteControll") {
     RenderAccordingly = <RemoteControll GameEvent={GameEvent} />;
   }
-  if ((GameEvent as any)?.current?.EventName == "Webrtc") {
-    RenderAccordingly = <Webrtc GameEvent={GameEvent} />;
+  if ((GameEvent as any)?.current?.EventName == "WebRTCLogIn") {
+    RenderAccordingly = <WebRTCLogIn GameEvent={GameEvent} rtc_socket={client_socket} />;
+  }
+  if ((GameEvent as any)?.current?.EventName == "WebRTCSelectRoom") {
+    RenderAccordingly = <WebRTCSelectRoom GameEvent={GameEvent} rtc_socket={client_socket} />;
+  }
+  if ((GameEvent as any)?.current?.EventName == "WebRTC") {
+    RenderAccordingly = <WebRTC GameEvent={GameEvent} rtc_socket={client_socket}/>;
   }
 
   return <div>{RenderAccordingly}</div>;
