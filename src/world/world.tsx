@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import { useRef, useEffect, useState } from "react";
 import InitScene from "./scene/scene";
-import WorldReact from "./react/WorldReact";
+import WorldReact from "./eventManager/WorldManager";
 import { EventAcrossComponents } from "./interface/WorldInterface";
 import Client_socket from "@/util/socket/Client_socket";
 

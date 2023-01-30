@@ -18,7 +18,9 @@ export default class Client_socket {
   socketLoginMessage?: socketLoginMessage;
   listening = false;
   constructor(ip: string) {
-    this.socket = io(ip);
+    this.socket = io(ip,
+       //{secure: true}
+       );
     this.socket.on("Connected", () => {
       console.log("Socket connected");
     });
@@ -99,7 +101,6 @@ export default class Client_socket {
   }
 
   sendRTCCandidate(msg:string){
-    console.log("asda")
     this.socket.emit("__RTCCandidate",msg)
   }
   receiveRTCCandidate(handler: Function){

@@ -11,7 +11,8 @@ const theme = extendTheme({
 
 let client_socket: any;
 function App() {
-  client_socket = new Client_socket(import.meta.env.SERVER_SOCKET_IP as string);
+  client_socket = new Client_socket(import.meta.env.VITE_SOCKET_IP as string);
+
   console.log(client_socket)
   return (
     <Box>

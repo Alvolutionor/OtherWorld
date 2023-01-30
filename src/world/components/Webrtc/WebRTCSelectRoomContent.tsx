@@ -119,7 +119,7 @@ const WebRTCSelectRoomContent = ({
           onClick={() => {
             (GameEvent as any).current = { EventName: "WebRTC" };
             console.log("roomId" + roomId);
-            rtc_socket.toRoom({ type: "ChatRoom", roomId: roomId });
+            rtc_socket.toRoom({ type: "RTC", roomId: roomId });
           }}
         >
           <Text fontSize={{ base: "20px", lg: "24px" }}>Enter</Text>
