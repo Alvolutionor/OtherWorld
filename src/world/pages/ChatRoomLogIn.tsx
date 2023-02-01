@@ -2,7 +2,7 @@ import WorldMenuFrame from "../components/WorldMenu/WorldMenuFrame";
 import { EventAcrossComponents } from "../interface/WorldInterface";
 import { Ref } from "react";
 import ChatRoomLogInContent from "../components/ChatRoom/ChatRoomLogInContent";
-import Client_socket from "@/socket/Client_socket";
+import Client_socket from "@/util/socket/Client_socket";
 
 const ChatRoomLogIn = ({
   GameEvent,

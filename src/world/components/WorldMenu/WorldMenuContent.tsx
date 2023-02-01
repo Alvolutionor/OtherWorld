@@ -96,7 +96,7 @@ const WorldMenuContent = ({ GameEvent }: { GameEvent: Ref<EventAcrossComponents 
           h={"100%"}
           borderRadius={{ base: "15px", lg: "30px" }}
           onClick={() => {
-            (GameEvent as any).current = { EventName: "Webrtc" };
+            (GameEvent as any).current = { EventName: "WebRTCLogIn" };
           }}
         >
           <Text fontSize={{ base: "20px", lg: "24px" }}>WEBRTC</Text>

@@ -4,12 +4,12 @@ import { EventAcrossComponents } from "@/world/interface/WorldInterface";
 import { Ref, useState } from "react";
 import { fontFamily, fontSize } from "@mui/system";
 import Client_socket from "@/util/socket/Client_socket";
-const ChatRoomSelectRoomContent = ({
+const WebRTCSelectRoomContent = ({
   GameEvent,
-  client_socket,
+  rtc_socket,
 }: {
   GameEvent: Ref<EventAcrossComponents | null>;
-  client_socket: Client_socket;
+  rtc_socket: Client_socket;
 }) => {
   const [roomId, setRoomId] = useState<string>("");
   return (
@@ -31,7 +31,7 @@ const ChatRoomSelectRoomContent = ({
           fontSize={{ base: "24px", lg: "36px" }}
           textAlign={"center"}
         >
-          Chat Room
+          RTC
         </Text>
       </Box>
       <IconButton
@@ -49,7 +49,7 @@ const ChatRoomSelectRoomContent = ({
       />
       <IconButton
         onClick={() => {
-          (GameEvent as any).current = { EventName: "ChatRoomLogIn" };
+          (GameEvent as any).current = { EventName: "WebRTCLogIn" };
         }}
         _hover={{ cursor: "pointer" }}
         backgroundColor={"#808080"}
@@ -117,9 +117,9 @@ const ChatRoomSelectRoomContent = ({
           h={"100%"}
           borderRadius={{ base: ".375rem", lg: "0.375rem" }}
           onClick={() => {
-            (GameEvent as any).current = { EventName: "Chating" };
+            (GameEvent as any).current = { EventName: "WebRTC" };
             console.log("roomId" + roomId);
-            client_socket.toRoom({ type: "ChatRoom", roomId: roomId });
+            rtc_socket.toRoom({ type: "RTC", roomId: roomId });
           }}
         >
           <Text fontSize={{ base: "20px", lg: "24px" }}>Enter</Text>
@@ -128,4 +128,4 @@ const ChatRoomSelectRoomContent = ({
     </Box>
   );
 };
-export default ChatRoomSelectRoomContent;
+export default WebRTCSelectRoomContent;

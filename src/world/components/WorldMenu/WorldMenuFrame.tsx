@@ -1,7 +1,12 @@
 import { Box } from "@chakra-ui/react";
 import { useEffect } from "react";
 
-const WorldMenuFrame = ({ children, opacity = 0.8, color = "#808080" }: any) => {
+const WorldMenuFrame = ({
+  children,
+  opacity = 0.8,
+  color = "#808080",
+  outerBorder = { base: "20px", lg: "25px" },
+}: any) => {
   let hFixed;
   let wFixed;
   useEffect(() => {
@@ -15,10 +20,10 @@ const WorldMenuFrame = ({ children, opacity = 0.8, color = "#808080" }: any) => 
       h={"80%"}
       left={{ base: "0", lg: "25%" }}
       top={"10%"}
-      zIndex={"999"}
+      zIndex={"500"}
       backgroundColor={color}
       opacity={opacity}
-      borderRadius={{ base: "20px", lg: "25px" }}
+      borderRadius={outerBorder}
       id="Menu"
       overflow={"scroll"}
     >

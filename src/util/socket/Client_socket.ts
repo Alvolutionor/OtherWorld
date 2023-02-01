@@ -14,11 +14,13 @@ export interface socketToRoom {
 export default class Client_socket {
   //TODO: Change socket to array of sockets
   socket: Socket;
-  rooms?: Array<{ socketToRoom: socketToRoom; listening: boolean }>;
+  room?: { socketToRoom: socketToRoom; listening: boolean };
   socketLoginMessage?: socketLoginMessage;
   listening = false;
   constructor(ip: string) {
-    this.socket = io(ip);
+    this.socket = io(ip,
+       //{secure: true}
+       );
     this.socket.on("Connected", () => {
       console.log("Socket connected");
     });
@@ -27,7 +29,6 @@ export default class Client_socket {
     this.socket.emit("login", socketLoginMessage);
     var logInRes;
     logInRes = this.socket.on("loginSucceed", () => {
-      this.rooms = [];
       this.socketLoginMessage = socketLoginMessage;
       return "success";
     });
@@ -41,9 +42,9 @@ export default class Client_socket {
   //toRoom then render chat room then listen
   toRoom(socketToRoom: socketToRoom) {
     this.socket.emit("toRoom", socketToRoom);
+    this.room = { socketToRoom, listening: false };
     var logInRes;
     logInRes = this.socket.on("toRoomSucceed", () => {
-      this.rooms?.push({ socketToRoom, listening: false });
       return "success";
     });
     logInRes = this.socket.on("toRoomFailed", () => {
@@ -57,28 +58,31 @@ export default class Client_socket {
   // [{who:what}]
   //
   async listenRoom(setMessage: Function) {
-    this.listening = true;
-
     if (this.listening) {
       return;
     }
-    await this.socket.on("NewUser", (name) => {
+    this.socket.on("NewUser", (name) => {
       setMessage((message: any) => {
-        console.log(message);
-        message = message.push({ who: "system", what: name + "has joined" });
+        console;
+        name
+          ? message.push({ who: "System", what: name + "has joined" })
+          : message.push({ who: "System", what: "Anonymous has joined" });
         return message;
       });
     });
-    this.socket.on("UserMessage", (name, msg) => {
-      setMessage((message: Array<{ who: string; what: string }>) =>
-        message.push({ who: name, what: msg })
-      );
+    this.socket.on("UserMessage", (msg) => {
+      setMessage((message: Array<{ who: string; what: string }>) => {
+        message.push(msg);
+        return message;
+      });
     });
     this.socket.on("SystemMessage", (msg) => {
-      setMessage((message: Array<{ who: string; what: string }>) =>
-        message.push({ who: "system", what: msg })
-      );
+      setMessage((message: Array<{ who: string; what: string }>) => {
+        message.push({ who: "System", what: msg });
+        return message;
+      });
     });
+    this.listening = true;
   }
   leaveRoom(socketToRoom: socketToRoom) {
     this.socket.emit("leaveRoom", socketToRoom);
@@ -87,11 +91,32 @@ export default class Client_socket {
     this.socket.off("SystemMessage");
     this.listening = false;
   }
-  sendToRoom(msg: string, socketToRoom: socketToRoom) {
+  sendToRoom(msg: string) {
+    console.log(this.room);
     this.socket.emit("sendMsg", {
       who: this.socketLoginMessage?.name,
       what: msg,
-      room: socketToRoom.roomId,
+      roomId: this.room?.socketToRoom.roomId,
     });
   }
+
+  sendRTCCandidate(msg:string){
+    this.socket.emit("__RTCCandidate",msg)
+  }
+  receiveRTCCandidate(handler: Function){
+    this.socket.on("__RTCCandidate",(msg)=>handler(msg))
+  }
+  sendRTCOffer(sdp:string){
+    this.socket.emit("__RTCOffer",sdp)
+  }
+  receiveRTCOffer(handler: Function){
+    this.socket.on("__RTCOffer",(sdp)=>handler(sdp))
+  }
+  sendRTCAnswer(sdp:string){
+    this.socket.emit("__RTCAnswer",sdp)
+  }
+  receiveRTCAnswer(handler: Function){
+    this.socket.on("__RTCAnswer",(sdp)=>handler(sdp))
+  }
+
 }

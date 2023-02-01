@@ -1,7 +1,8 @@
-import Client_socket from "./socket/Client_socket";
+import Client_socket from "./util/socket/Client_socket";
 import InitWorld from "./world/world";
 import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Fonts from "./styles/font";
+
 const theme = extendTheme({
   fonts: {
     Pixel: "Pixel",
@@ -10,7 +11,9 @@ const theme = extendTheme({
 
 let client_socket: any;
 function App() {
-  client_socket = new Client_socket("127.0.0.1:37788");
+  client_socket = new Client_socket(import.meta.env.VITE_SOCKET_IP as string);
+
+  console.log(client_socket)
   return (
     <Box>
       <ChakraProvider theme={theme}>
