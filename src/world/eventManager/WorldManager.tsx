@@ -50,7 +50,7 @@ const WorldReact = ({
     RenderAccordingly = <WebRTCSelectRoom GameEvent={GameEvent} rtc_socket={client_socket} />;
   }
   if ((GameEvent as any)?.current?.EventName == "WebRTC") {
-    RenderAccordingly = <WebRTC GameEvent={GameEvent} rtc_socket={client_socket}/>;
+    RenderAccordingly = <WebRTC GameEvent={GameEvent} rtc_socket={client_socket} isVideoChatOrScreenShare = {1}/>;
   }
 
   return <div>{RenderAccordingly}</div>;

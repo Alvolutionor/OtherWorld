@@ -4,7 +4,8 @@ import Client_socket from "../../util/socket/Client_socket";
 import WorldMenuFrame from "../components/WorldMenu/WorldMenuFrame";
 
 
-const WebRTC = ({ GameEvent, rtc_socket }: { GameEvent: Ref<EventAcrossComponents | null>, rtc_socket:Client_socket }) => {
+const WebRTC = ({ GameEvent, rtc_socket,isVideoChatOrScreenShare}: 
+  { GameEvent: Ref<EventAcrossComponents | null>, rtc_socket:Client_socket,isVideoChatOrScreenShare:number }) => {
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const localStreamRef = useRef<MediaStream>();
@@ -116,7 +117,7 @@ const WebRTC = ({ GameEvent, rtc_socket }: { GameEvent: Ref<EventAcrossComponent
   };
 
   useEffect(() => {
-    getMediaDevices(VIDEOCHAT).then(() => {
+    getMediaDevices(isVideoChatOrScreenShare).then(() => {
       createRtcConnection(rtc_socket);
       addLocalStreamToRtcConnection();
       rtc_socket.receiveRTCCandidate((msg: string) => {
@@ -131,8 +132,6 @@ const WebRTC = ({ GameEvent, rtc_socket }: { GameEvent: Ref<EventAcrossComponent
     
     });
   }, []);
-
-
 
   const addLocalStreamToRtcConnection = () => {
     const localStream = localStreamRef.current!;
