@@ -11,12 +11,7 @@ const theme = extendTheme({
 
 let client_socket: any;
 function App() {
-  if (import.meta.env.VITE_LOCAL as string== "true"){
-    client_socket = new Client_socket(import.meta.env.VITE_LOCAL_IP as string);
-  }
-  else{
-    client_socket = new Client_socket(import.meta.env.VITE_SOCKET_IP as string);
-  }
+  client_socket = new Client_socket(import.meta.env.VITE_SOCKET_IP as string);
 
   console.log(client_socket)
   return (
