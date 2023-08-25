@@ -27,7 +27,7 @@ const InitWorld = ({
       physics: {
         default: "arcade",
         arcade: {
-          gravity: { y: 200 },
+          gravity: { y: 0 },
         },
       },
       scene: [new InitScene({ key: "zero" }, "001", GameEvent)],
